@@ -3,7 +3,6 @@ package edu.ncsu.csc326.coffeemaker;
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import edu.ncsu.csc326.coffeemaker.*;
 import junit.framework.TestCase;
-import org.junit.Test;
 
 /**
  * 
