@@ -18,6 +18,11 @@ public class CoffeeMakerTest extends TestCase {
 	private Recipe r2;
 	private Recipe r3;
 	private Recipe r4;
+        
+        private Recipe rf1;
+        private Recipe rf2;
+        private Recipe rf3;
+        private Recipe rf4;
 
     @Override
 	protected void setUp() throws Exception {
@@ -81,7 +86,7 @@ public class CoffeeMakerTest extends TestCase {
             //Fehlersuche
             
             //FehlerBehebung.
-            
+
         }
         public void testAddRecipeException(){
             //Planung
