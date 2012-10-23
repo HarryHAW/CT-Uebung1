@@ -72,6 +72,8 @@ public class CoffeeMakerTest extends TestCase {
             assertEquals(true,cm.addRecipe(r1));
             assertEquals(true,cm.addRecipe(r2));
             assertEquals(true,cm.addRecipe(r3));
+            
+            //zu viel
             assertEquals(false,cm.addRecipe(r4));
             
             //Alles Integer? 
