@@ -80,23 +80,9 @@ public class CoffeeMakerTest extends TestCase {
                 //Alles Integer? wenn nein fehler
                 //Alles Positiv? wenn nein fehler
                 //schon vorhanden? wenn nein nicht adden
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
 
         }
         public void testAddRecipeException(){
-            //Planung
-            
-            //Spezifikation
-            
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
             
         }
         
@@ -109,22 +95,9 @@ public class CoffeeMakerTest extends TestCase {
                 //Integer? Wenn nein: Fehler
                     //Wenn Buchstabe ==> Fehler
                 //Empty Recipe ausgewählt? Fehler
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
         }
         public void testDeleteRecipeException(){
-            //Planung
-            
-            //Spezifikation
-            
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
+
         }
         
         public void testEditRecipe(){
@@ -136,22 +109,10 @@ public class CoffeeMakerTest extends TestCase {
                 //Alles Integer? wenn nein fehler
                 //Alles Positiv? wenn nein fehler
                 //schon vorhanden? wenn nein nicht adden
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
+
         }
         public void testEditRecipeException(){
-            //Planung
-            
-            //Spezifikation
-            
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
+
         }
         
         
@@ -163,11 +124,7 @@ public class CoffeeMakerTest extends TestCase {
                 //Alles Integer? Wenn nein, Fehler
                 //Alles Positiv? Wenn nein, Fehler
                 //Wenn Buchstabe ==> Fehler
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
+
             try {
 			cm.addInventory("4","7","0","9");
 		} catch (InventoryException e) {
@@ -176,15 +133,7 @@ public class CoffeeMakerTest extends TestCase {
 	}
 
 	public void testAddInventoryException() {
-            //Planung
-            
-            //Spezifikation
-            
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.	
+
             try {
 			cm.addInventory("4", "-1", "asdf", "3");
 			fail("InventoryException should be thrown");
@@ -198,23 +147,11 @@ public class CoffeeMakerTest extends TestCase {
                 //The user will be shown a listing of the inventory of ingredients in the CoffeeMaker 
             //Spezifikation
                 //listing of the inventory of ingredients
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
+
 	}
 
 	public void testCheckInventoryException() {
-            //Planung
-            
-            //Spezifikation
-            
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.	
+
 	}
 	
 	public void testMakeCoffee() {
@@ -225,24 +162,12 @@ public class CoffeeMakerTest extends TestCase {
             //Spezifikation
                 //If there is not enough inventory to make the beverage, a message will be displayed, the user's money will be returned, and the user will be returned to the main menu.
                 //If the user does not enter enough money, their money will be returned, and the user will be returned to the main menu. 
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
+
 		cm.addRecipe(r1);
 		assertEquals(25, cm.makeCoffee(0, 75));
 	}
         public void testMakeCoffeeException(){
-            //Planung
-            
-            //Spezifikation
-            
-            //Dokumentation
-            
-            //Fehlersuche
-            
-            //FehlerBehebung.
+
         }
 
 }
