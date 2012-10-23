@@ -68,29 +68,28 @@ public class CoffeeMakerTest extends TestCase {
 	public void testAddRecipe(){
             
             try {
+            //Alles Integer? 
+                //Recipe laesst sich nicht erstellen
+            
+            //Alles positiv? 
+                //Recipe laesst sich nicht erstellen    
+                
             //zulässige Recipe
             assertEquals(true,cm.addRecipe(r1));
             assertEquals(true,cm.addRecipe(r2));
             assertEquals(true,cm.addRecipe(r3));
             
-            //zu viel
-            assertEquals(false,cm.addRecipe(r4));
-            
-            //Alles Integer? 
-                //Recipe laesst sich nicht erstellen
-            
-            //Alles positiv? 
-                //Recipe laesst sich nicht erstellen
-            
             //schon vorhanden?
             assertEquals(false, cm.addRecipe(r1));
             assertEquals(false, cm.addRecipe(r2));
             assertEquals(false, cm.addRecipe(r3));
-            assertEquals(false, cm.addRecipe(r4));
-
+            
+            //zu viel
+            assertEquals(false,cm.addRecipe(r4));
+            
                 
 		} catch (Exception e) {
-			//fail("InventoryException should not be thrown");
+			fail("InventoryException should not be thrown");
 		}
         }
         public void testAddRecipeException(){
@@ -98,6 +97,7 @@ public class CoffeeMakerTest extends TestCase {
         }
         
         public void testDeleteRecipe(){
+            try{
             //Recipe loeschen zulaessig
             assertEquals(true, cm.deleteRecipe(1));
             assertEquals(true, cm.deleteRecipe(2));
@@ -115,11 +115,16 @@ public class CoffeeMakerTest extends TestCase {
             assertEquals(false, cm.deleteRecipe(0));
             assertEquals(false, cm.deleteRecipe(Integer.MAX_VALUE));
             
-            //Spezifikation
-                //Wenn OutOfBounds(Wert zu groß): Fehler
-                //Integer? Wenn nein: Fehler
-                    //Wenn Buchstabe ==> Fehler
-                //Empty Recipe ausgewählt? Fehler
+            //Kein Integer?
+                //Integer benötigt! (Typenbasiert)
+            
+            //Empty Recipe?
+            
+            
+
+            } catch (Exception e) {
+                fail("InventoryException should not be thrown");
+            }
         }
         public void testDeleteRecipeException(){
 
