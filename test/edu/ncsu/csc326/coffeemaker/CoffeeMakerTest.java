@@ -2,6 +2,7 @@ package edu.ncsu.csc326.coffeemaker;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import edu.ncsu.csc326.coffeemaker.*;
+import java.util.ArrayList;
 import junit.framework.TestCase;
 
 /**
@@ -13,15 +14,12 @@ import junit.framework.TestCase;
 public class CoffeeMakerTest extends TestCase {
 	
 	private CoffeeMaker cm;
-	private Recipe r1;
+	//zulässig
+        private Recipe r1;
 	private Recipe r2;
 	private Recipe r3;
 	private Recipe r4;
         
-        private Recipe rf1;
-        private Recipe rf2;
-        private Recipe rf3;
-        private Recipe rf4;
 
     @Override
 	protected void setUp() throws Exception {
@@ -62,34 +60,59 @@ public class CoffeeMakerTest extends TestCase {
 		r4.setAmtMilk("1");
 		r4.setAmtSugar("1");
 		r4.setPrice("65");
-		
+               
+                
 		super.setUp();
 	}
         
 	public void testAddRecipe(){
             
-            
-            //Planung
-                //A user selects the menu option to add a recipe. The user enters the name, price, units coffee, units sugar, units milk, and units chocolate that make up the recipe.
+            try {
+            //zulässige Recipe
             assertEquals(true,cm.addRecipe(r1));
             assertEquals(true,cm.addRecipe(r2));
             assertEquals(true,cm.addRecipe(r3));
-            assertEquals(true,cm.addRecipe(r4));
+            assertEquals(false,cm.addRecipe(r4));
             
-            //Spezifikation
-                //Alles Integer? wenn nein fehler
-                //Alles Positiv? wenn nein fehler
-                //schon vorhanden? wenn nein nicht adden
+            //Alles Integer? 
+                //Recipe laesst sich nicht erstellen
+            
+            //Alles positiv? 
+                //Recipe laesst sich nicht erstellen
+            
+            //schon vorhanden?
+            assertEquals(false, cm.addRecipe(r1));
+            assertEquals(false, cm.addRecipe(r2));
+            assertEquals(false, cm.addRecipe(r3));
+            assertEquals(false, cm.addRecipe(r4));
 
+                
+		} catch (Exception e) {
+			//fail("InventoryException should not be thrown");
+		}
         }
         public void testAddRecipeException(){
             
         }
         
         public void testDeleteRecipe(){
-            //Planung
-                //The user will be shown a list of all recipes in the system, and asked to choose the recipe, by number, that they wish to delete. 
-//            cm.deleteRecipe(recipeToDelete);
+            //Recipe loeschen zulaessig
+            assertEquals(true, cm.deleteRecipe(1));
+            assertEquals(true, cm.deleteRecipe(2));
+            assertEquals(true, cm.deleteRecipe(3));
+            assertEquals(true, cm.deleteRecipe(4));
+            
+            //Recipe nicht vorhanden
+            assertEquals(false, cm.deleteRecipe(1));
+            assertEquals(false, cm.deleteRecipe(2));
+            assertEquals(false, cm.deleteRecipe(3));
+            assertEquals(false, cm.deleteRecipe(4));
+            
+            //Index Out of Bounds
+            assertEquals(false, cm.deleteRecipe(Integer.MIN_VALUE));
+            assertEquals(false, cm.deleteRecipe(0));
+            assertEquals(false, cm.deleteRecipe(Integer.MAX_VALUE));
+            
             //Spezifikation
                 //Wenn OutOfBounds(Wert zu groß): Fehler
                 //Integer? Wenn nein: Fehler
