@@ -3,6 +3,8 @@ package edu.ncsu.csc326.coffeemaker;
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import edu.ncsu.csc326.coffeemaker.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -66,7 +68,6 @@ public class CoffeeMakerTest extends TestCase {
 	}
         
 	public void testAddRecipe(){
-            
             try {
             //Alles Integer? 
                 //Recipe laesst sich nicht erstellen
@@ -86,14 +87,12 @@ public class CoffeeMakerTest extends TestCase {
             
             //zu viel
             assertEquals(false,cm.addRecipe(r4));
-            
                 
 		} catch (Exception e) {
 			fail("InventoryException should not be thrown");
 		}
         }
         public void testAddRecipeException(){
-            
         }
         
         public void testDeleteRecipe(){
@@ -104,16 +103,16 @@ public class CoffeeMakerTest extends TestCase {
             assertEquals(true, cm.deleteRecipe(3));
             assertEquals(true, cm.deleteRecipe(4));
             
+            //Index Out of Bounds
+            assertEquals(false, cm.deleteRecipe(Integer.MIN_VALUE));
+            assertEquals(false, cm.deleteRecipe(0));
+            assertEquals(false, cm.deleteRecipe(Integer.MAX_VALUE));
+            
             //Recipe nicht vorhanden
             assertEquals(false, cm.deleteRecipe(1));
             assertEquals(false, cm.deleteRecipe(2));
             assertEquals(false, cm.deleteRecipe(3));
             assertEquals(false, cm.deleteRecipe(4));
-            
-            //Index Out of Bounds
-            assertEquals(false, cm.deleteRecipe(Integer.MIN_VALUE));
-            assertEquals(false, cm.deleteRecipe(0));
-            assertEquals(false, cm.deleteRecipe(Integer.MAX_VALUE));
             
             //Kein Integer?
                 //Integer benötigt! (Typenbasiert)
@@ -131,14 +130,31 @@ public class CoffeeMakerTest extends TestCase {
         }
         
         public void testEditRecipe(){
-            //Planung
-                //he user will be shown a list of all recipes in the system, and asked to choose the recipe, by number, that they wish to edit. The user enters the price, units coffee, units sugar, units milk , and units chocolate that make up the modified selected recipe.
-//            cm.editRecipe(recipeToEdit, r1);
-            //Spezifikation
-                //Wenn OutOfBounds(Wert zu groß): Fehler
-                //Alles Integer? wenn nein fehler
-                //Alles Positiv? wenn nein fehler
-                //schon vorhanden? wenn nein nicht adden
+            //SetUp
+                cm = new CoffeeMaker();
+                cm.addRecipe(r1);
+                cm.addRecipe(r2);
+            //
+            
+            //Recipe editieren zulaessig
+            assertEquals(true, cm.editRecipe(1, r4));
+            assertEquals(true, cm.editRecipe(2, r3));
+            
+            //Index OutOfBounds
+            assertEquals(true, cm.editRecipe(Integer.MIN_VALUE, r4));
+            assertEquals(true, cm.editRecipe(0, r4));
+            assertEquals(true, cm.editRecipe(Integer.MAX_VALUE, r4));
+            
+            //schon vorhanden?
+            assertEquals(false, cm.editRecipe(1, r4));
+            assertEquals(false, cm.editRecipe(2, r3));
+            
+            //Alles Integer?
+                //Exception werden in Recipe geworfen
+            
+            //Alles Positiv?
+                //Exception werden in Recipe geworfen
+          
 
         }
         public void testEditRecipeException(){
