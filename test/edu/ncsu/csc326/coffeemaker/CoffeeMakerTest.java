@@ -2,6 +2,7 @@ package edu.ncsu.csc326.coffeemaker;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import edu.ncsu.csc326.coffeemaker.*;
+import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 import junit.framework.TestCase;
 
 /**
@@ -68,6 +69,7 @@ public class CoffeeMakerTest extends TestCase {
             try {
             //Alles Integer? 
                 //Recipe laesst sich nicht erstellen
+            assertEquals(false, cm.addRecipe(null));
             
             //Alles positiv? 
                 //Recipe laesst sich nicht erstellen    
@@ -82,14 +84,22 @@ public class CoffeeMakerTest extends TestCase {
             assertEquals(false, cm.addRecipe(r2));
             assertEquals(false, cm.addRecipe(r3));
             
-            //zu viel
+            //zu viel (laut Spezifikation maximal 3 Rezepte)
             assertEquals(false,cm.addRecipe(r4));
                 
 		} catch (Exception e) {
-			fail("InventoryException should not be thrown");
+			fail("RecipeException should not be thrown");
 		}
         }
+        
         public void testAddRecipeException(){
+            try{
+                cm.addRecipe(null);
+                //                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+                
+            }
         }
         
         public void testDeleteRecipe(){
@@ -119,14 +129,22 @@ public class CoffeeMakerTest extends TestCase {
             
 
             } catch (Exception e) {
-                fail("InventoryException should not be thrown");
+                fail("RecipeException should not be thrown");
             }
         }
+        
         public void testDeleteRecipeException(){
-
+            try{
+                
+//                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+                
+            }
         }
         
         public void testEditRecipe(){
+            try{
             //SetUp
                 cm = new CoffeeMaker();
                 cm.addRecipe(r1);
@@ -151,11 +169,20 @@ public class CoffeeMakerTest extends TestCase {
             
             //Alles Positiv?
                 //Exception werden in Recipe geworfen
-          
-
+            }
+            catch(Exception e){
+                fail("Exception should not be thrown");
+            }
         }
+        
         public void testEditRecipeException(){
-
+            try{
+                
+//                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+                
+            }
         }
         
         
