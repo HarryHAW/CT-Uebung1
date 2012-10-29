@@ -3,6 +3,8 @@ package edu.ncsu.csc326.coffeemaker;
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import edu.ncsu.csc326.coffeemaker.*;
 import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -64,7 +66,8 @@ public class CoffeeMakerTest extends TestCase {
                 
 		super.setUp();
 	}
-        
+
+
 	public void testAddRecipe(){
             try {
             //Alles Integer? 
@@ -184,46 +187,191 @@ public class CoffeeMakerTest extends TestCase {
                 
             }
         }
-        
-        
-	public void testAddInventory() {
-            //Planung
-                //The user will be prompted for the units of each of the four ingredients they wish to add to the inventory.
-            
-            //Spezifikation
-                //Alles Integer? Wenn nein, Fehler
-                //Alles Positiv? Wenn nein, Fehler
-                //Wenn Buchstabe ==> Fehler
 
+    
+        public void testAddInventory1() {
             try {
-			cm.addInventory("4","7","0","9");
+			cm.addInventory("1","2","3","100");
 		} catch (InventoryException e) {
 			fail("InventoryException should not be thrown");
 		}
 	}
 
-	public void testAddInventoryException() {
-
+	public void testAddInventory2() {
             try {
-			cm.addInventory("4", "-1", "asdf", "3");
-			fail("InventoryException should be thrown");
+			cm.addInventory("0","1","2","100");
 		} catch (InventoryException e) {
-			//success if thrown
+			fail("InventoryException should not be thrown");
 		}
 	}
-        
-        public void testCheckInventory() {
-            //Planung
-                //The user will be shown a listing of the inventory of ingredients in the CoffeeMaker 
-            //Spezifikation
-                //listing of the inventory of ingredients
 
+        public void testAddInventory3() {
+            try {
+			cm.addInventory("1","0","2","100");
+		} catch (InventoryException e) {
+			fail("InventoryException should not be thrown");
+		}
 	}
 
-	public void testCheckInventoryException() {
-
+        public void testAddInventory4() {
+            try {
+			cm.addInventory("1","2","0","100");
+		} catch (InventoryException e) {
+			fail("InventoryException should not be thrown");
+		}
 	}
-	
+
+       public void testAddInventory5() {
+            try {
+			cm.addInventory("1","2","100","0");
+		} catch (InventoryException e) {
+			fail("InventoryException should not be thrown");
+		}
+	}
+
+	public void testAddInventoryException1() {
+            try {
+                cm.addInventory("-1", "1", "1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException2() {
+            try {
+                cm.addInventory("1", "-1", "1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException3() {
+            try {
+                cm.addInventory("1", "1", "-1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException4() {
+            try {
+                cm.addInventory("1", "1", "1", "-1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException5() {
+            try {
+                cm.addInventory("a", "1", "1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException6() {
+            try {
+                cm.addInventory("1", "a", "1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException7() {
+            try {
+                cm.addInventory("1", "1", "a", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException8() {
+            try {
+                cm.addInventory("1", "1", "1", "a");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+         public void testAddInventoryException9() {
+            try {
+                cm.addInventory("0.1", "1", "1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException10() {
+            try {
+                cm.addInventory("1", "0.1", "1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+       public void testAddInventoryException11() {
+            try {
+                cm.addInventory("1", "1", "0.1", "1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testAddInventoryException12() {
+            try {
+                cm.addInventory("1", "1", "1", "0.1");
+            	fail("InventoryException should be thrown");
+            }
+            catch (InventoryException e) {
+                //success if thrown
+            }
+	}
+
+        public void testCheckInventory1() {
+
+            StringBuilder inventory = new StringBuilder();
+            inventory.append("Coffee: ");
+            inventory.append(15);
+            inventory.append("\n");
+            inventory.append("Milk: ");
+            inventory.append(15);
+            inventory.append("\n");
+            inventory.append("Sugar: ");
+            inventory.append(15);
+            inventory.append("\n");
+            inventory.append("Chocolate: ");
+            inventory.append(15);
+            inventory.append("\n");
+            assertEquals(cm.checkInventory(), inventory.toString());
+
+           cm.checkInventory();
+	}
+
+
+
+
 	public void testMakeCoffee() {
             //Planung
                 //The user will select the beverage they wish to purchase. The user will deposit money to pay for the beverage
