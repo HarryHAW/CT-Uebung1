@@ -349,6 +349,53 @@ public class CoffeeMakerTest extends TestCase {
             }
 	}
 
+         public void testAddInventoryState1() {
+            try {
+                cm.addInventory("1", "1", "0", "1");
+
+                StringBuilder inventory = new StringBuilder();
+                inventory.append("Coffee: ");
+                inventory.append(16);
+                inventory.append("\n");
+                inventory.append("Milk: ");
+                inventory.append(16);
+                inventory.append("\n");
+                inventory.append("Sugar: ");
+                inventory.append(15);
+                inventory.append("\n");
+                inventory.append("Chocolate: ");
+                inventory.append(16);
+                inventory.append("\n");
+                assertEquals(cm.checkInventory(), inventory.toString());
+            }
+            catch (InventoryException e) {
+                fail("Error in TestCase AddInventory");
+            }
+	}
+
+         public void testAddInventoryState2() {
+            try {
+                cm.addInventory("1", "1", "a", "1");
+                fail("Error in TestCase AddInventory");
+            }
+            catch (InventoryException e) {
+                StringBuilder inventory = new StringBuilder();
+                inventory.append("Coffee: ");
+                inventory.append(15);
+                inventory.append("\n");
+                inventory.append("Milk: ");
+                inventory.append(15);
+                inventory.append("\n");
+                inventory.append("Sugar: ");
+                inventory.append(15);
+                inventory.append("\n");
+                inventory.append("Chocolate: ");
+                inventory.append(15);
+                inventory.append("\n");
+                assertEquals(cm.checkInventory(), inventory.toString());
+            }
+	}
+
         public void testCheckInventory1() {
 
             StringBuilder inventory = new StringBuilder();
@@ -365,9 +412,9 @@ public class CoffeeMakerTest extends TestCase {
             inventory.append(15);
             inventory.append("\n");
             assertEquals(cm.checkInventory(), inventory.toString());
-
-           cm.checkInventory();
 	}
+
+
 
 
 
