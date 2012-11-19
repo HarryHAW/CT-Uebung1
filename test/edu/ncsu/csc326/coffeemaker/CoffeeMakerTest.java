@@ -1,10 +1,6 @@
 package edu.ncsu.csc326.coffeemaker;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
-import edu.ncsu.csc326.coffeemaker.*;
-import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -16,6 +12,7 @@ import junit.framework.TestCase;
 public class CoffeeMakerTest extends TestCase {
 	
 	private CoffeeMaker cm;
+	private CoffeeMaker cm2;
 	//zulässig
         private Recipe r1;
 	private Recipe r2;
@@ -26,6 +23,7 @@ public class CoffeeMakerTest extends TestCase {
     @Override
 	protected void setUp() throws Exception {
 		cm = new CoffeeMaker();
+                
 		
 		//Set up for r1
 		r1 = new Recipe();
@@ -64,11 +62,15 @@ public class CoffeeMakerTest extends TestCase {
 		r4.setPrice("65");
                
                 
+                cm2 = new CoffeeMaker();
+                cm2.addRecipe(r1);
+                cm2.addRecipe(r2);
+                
 		super.setUp();
 	}
 
 
-	public void testAddRecipe(){
+/*	public void testAddRecipe(){
             try {
             //Alles Integer? 
                 //Recipe laesst sich nicht erstellen
@@ -94,18 +96,77 @@ public class CoffeeMakerTest extends TestCase {
 			fail("RecipeException should not be thrown");
 		}
         }
+  */      
+        public void testAddRecipe1(){
+            try {     
+                    cm.addRecipe(r1);
+		} catch (Exception e) {
+                    fail("RecipeException should not be thrown");
+		}
+        }
         
-        public void testAddRecipeException(){
+        public void testAddRecipe2(){
+            try {
+                    cm.addRecipe(r2);
+		} catch (Exception e) {
+                    fail("RecipeException should not be thrown");
+		}
+        }
+        
+        public void testAddRecipe3(){
+            try {
+                    cm.addRecipe(r3);
+		} catch (Exception e) {
+                    fail("RecipeException should not be thrown");
+		}
+        }
+        
+        public void testAddRecipeException1(){
             try{
                 cm.addRecipe(null);
-                //                fail("Exception should be thrown");
+                fail("Exception should be thrown");
             }
             catch(Exception e){
-                
             }
         }
         
-        public void testDeleteRecipe(){
+        public void testAddRecipeException2(){
+            try{
+            cm.addRecipe(r1);
+            fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testAddRecipeException3(){
+            try{
+                cm.addRecipe(r2);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testAddRecipeException4(){
+            try{
+                cm.addRecipe(r3);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testAddRecipeException5(){
+            try{
+                cm.addRecipe(r4);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+ /*       public void testDeleteRecipe(){
             try{
             //Recipe loeschen zulaessig
             assertEquals(true, cm.deleteRecipe(1));
@@ -135,37 +196,122 @@ public class CoffeeMakerTest extends TestCase {
                 fail("RecipeException should not be thrown");
             }
         }
-        
-        public void testDeleteRecipeException(){
+     */   
+        public void testDeleteRecipe1(){
             try{
                 
-//                fail("Exception should be thrown");
-            }
-            catch(Exception e){
-                
+                 cm.deleteRecipe(1);
+            } catch (Exception e) {
+                fail("RecipeException should not be thrown");
             }
         }
         
-        public void testEditRecipe(){
+        public void testDeleteRecipe2(){
+            try{
+                 cm.deleteRecipe(2);
+            } catch (Exception e) {
+                fail("RecipeException should not be thrown");
+            }
+        }
+        
+        public void testDeleteRecipe3(){
+            try{
+                 cm.deleteRecipe(3);
+            } catch (Exception e) {
+                fail("RecipeException should not be thrown");
+            }
+        }
+        
+        public void testDeleteRecipe4(){
+            try{
+                cm.deleteRecipe(4);
+            } catch (Exception e) {
+                fail("RecipeException should not be thrown");
+            }
+        }
+        
+        public void testDeleteRecipeException1(){
+            try{
+                    cm.deleteRecipe(Integer.MIN_VALUE);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testDeleteRecipeException2(){
+            try{
+                cm.deleteRecipe(0);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testDeleteRecipeException3(){
+            try{
+                cm.deleteRecipe(Integer.MAX_VALUE);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testDeleteRecipeException4(){
+            try{
+                cm.deleteRecipe(1);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testDeleteRecipeException5(){
+            try{
+                cm.deleteRecipe(2);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testDeleteRecipeException6(){
+            try{
+                cm.deleteRecipe(3);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        public void testDeleteRecipeException7(){
+            try{
+                cm.deleteRecipe(4);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+        
+        
+ /*       public void testEditRecipe(){
             try{
             //SetUp
-                cm = new CoffeeMaker();
-                cm.addRecipe(r1);
-                cm.addRecipe(r2);
+                
             //
             
             //Recipe editieren zulaessig
-            assertEquals(true, cm.editRecipe(1, r4));
-            assertEquals(true, cm.editRecipe(2, r3));
+            assertEquals(true, cm2.editRecipe(1, r4));
+            assertEquals(true, cm2.editRecipe(2, r3));
             
             //Index OutOfBounds
-            assertEquals(true, cm.editRecipe(Integer.MIN_VALUE, r4));
-            assertEquals(true, cm.editRecipe(0, r4));
-            assertEquals(true, cm.editRecipe(Integer.MAX_VALUE, r4));
+            assertEquals(true, cm2.editRecipe(Integer.MIN_VALUE, r4));
+            assertEquals(true, cm2.editRecipe(0, r4));
+            assertEquals(true, cm2.editRecipe(Integer.MAX_VALUE, r4));
             
             //schon vorhanden?
-            assertEquals(false, cm.editRecipe(1, r4));
-            assertEquals(false, cm.editRecipe(2, r3));
+            assertEquals(false, cm2.editRecipe(1, r4));
+            assertEquals(false, cm2.editRecipe(2, r3));
             
             //Alles Integer?
                 //Exception werden in Recipe geworfen
@@ -177,14 +323,67 @@ public class CoffeeMakerTest extends TestCase {
                 fail("Exception should not be thrown");
             }
         }
-        
-        public void testEditRecipeException(){
+    */    
+        public void testEditRecipe1(){
             try{
-                
-//                fail("Exception should be thrown");
+                cm2.editRecipe(1, r4);
             }
             catch(Exception e){
-                
+                fail("Exception should not be thrown");
+            }
+        }
+        
+        public void testEditRecipe2(){
+            try{
+                cm2.editRecipe(2, r3);
+            }
+            catch(Exception e){
+                fail("Exception should not be thrown");
+            }
+        }
+        
+        public void testEditRecipe3(){
+            try{
+                cm2.editRecipe(Integer.MIN_VALUE, r4);
+            }
+            catch(Exception e){
+                fail("Exception should not be thrown");
+            }
+        }
+        
+        public void testEditRecipe4(){
+            try{
+                cm2.editRecipe(0, r4);
+            }
+            catch(Exception e){
+                fail("Exception should not be thrown");
+            }
+        }
+        
+        public void testEditRecipe5(){
+            try{
+                cm2.editRecipe(Integer.MAX_VALUE, r4);
+            }
+            catch(Exception e){
+                fail("Exception should not be thrown");
+            }
+        }
+        
+        public void testEditRecipeException1(){
+            try{
+                cm2.editRecipe(1, r4);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
+
+        public void testEditRecipeException2(){
+            try{
+                cm2.editRecipe(2, r3);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
             }
         }
 
