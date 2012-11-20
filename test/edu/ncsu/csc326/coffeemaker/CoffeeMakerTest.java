@@ -172,7 +172,6 @@ public class CoffeeMakerTest extends TestCase {
             assertEquals(true, cm.deleteRecipe(1));
             assertEquals(true, cm.deleteRecipe(2));
             assertEquals(true, cm.deleteRecipe(3));
-            assertEquals(true, cm.deleteRecipe(4));
             
             //Index Out of Bounds
             assertEquals(false, cm.deleteRecipe(Integer.MIN_VALUE));
@@ -221,15 +220,7 @@ public class CoffeeMakerTest extends TestCase {
                 fail("RecipeException should not be thrown");
             }
         }
-        
-        public void testDeleteRecipe4(){
-            try{
-                cm.deleteRecipe(4);
-            } catch (Exception e) {
-                fail("RecipeException should not be thrown");
-            }
-        }
-        
+               
         public void testDeleteRecipeException1(){
             try{
                     cm.deleteRecipe(Integer.MIN_VALUE);
@@ -293,7 +284,14 @@ public class CoffeeMakerTest extends TestCase {
             }
         }
         
-        
+        public void testDeleteRecipeException8(){
+            try{
+                cm.deleteRecipe(4);
+                fail("Exception should be thrown");
+            }
+            catch(Exception e){
+            }
+        }
  /*       public void testEditRecipe(){
             try{
             //SetUp
@@ -305,9 +303,9 @@ public class CoffeeMakerTest extends TestCase {
             assertEquals(true, cm2.editRecipe(2, r3));
             
             //Index OutOfBounds
-            assertEquals(true, cm2.editRecipe(Integer.MIN_VALUE, r4));
-            assertEquals(true, cm2.editRecipe(0, r4));
-            assertEquals(true, cm2.editRecipe(Integer.MAX_VALUE, r4));
+            assertEquals(false, cm2.editRecipe(Integer.MIN_VALUE, r4));
+            assertEquals(false, cm2.editRecipe(0, r4));
+            assertEquals(false, cm2.editRecipe(Integer.MAX_VALUE, r4));
             
             //schon vorhanden?
             assertEquals(false, cm2.editRecipe(1, r4));
@@ -342,34 +340,34 @@ public class CoffeeMakerTest extends TestCase {
             }
         }
         
-        public void testEditRecipe3(){
+        public void testEditRecipeException1(){
             try{
                 cm2.editRecipe(Integer.MIN_VALUE, r4);
+                fail("Exception should be thrown");
             }
             catch(Exception e){
-                fail("Exception should not be thrown");
             }
         }
         
-        public void testEditRecipe4(){
+        public void testEditRecipeException2(){
             try{
                 cm2.editRecipe(0, r4);
+                fail("Exception should be thrown");
             }
             catch(Exception e){
-                fail("Exception should not be thrown");
             }
         }
         
-        public void testEditRecipe5(){
+        public void testEditRecipeException3(){
             try{
                 cm2.editRecipe(Integer.MAX_VALUE, r4);
+                fail("Exception should be thrown");
             }
             catch(Exception e){
-                fail("Exception should not be thrown");
             }
         }
         
-        public void testEditRecipeException1(){
+        public void testEditRecipeException4(){
             try{
                 cm2.editRecipe(1, r4);
                 fail("Exception should be thrown");
@@ -378,7 +376,7 @@ public class CoffeeMakerTest extends TestCase {
             }
         }
 
-        public void testEditRecipeException2(){
+        public void testEditRecipeException5(){
             try{
                 cm2.editRecipe(2, r3);
                 fail("Exception should be thrown");
